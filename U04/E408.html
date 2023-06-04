@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>4.08</title>
+</head>
+
+<body>
+      <h1>4.08 Parsea un texto</h1>
+      <p>Introduce el texto que se va a cambiar por XXXXX: </p>
+      <textarea id="texto"></textarea>
+
+      <p>
+            Cadena a buscar: <input type="text" placeholder="Texto a sustituir por XXXXX" id="buscado">
+            <input type="button" value="Sustituir" onclick="buscar2()">
+       <!--     <input type="button" value="Sustituir sin RegExp" onclick="buscar2()">
+            <input type="button" value="Sustituir con RegExp" onclick="buscar()"> -->
+      </p>
+
+      <p id="resultado"></p>
+
+      <script>
+            // realiza la búsqueda sin utilizar expresiones regulares
+            function buscar2() {
+                  var sCad = document.getElementById("texto").value;
+                  var sBuscado = document.getElementById("buscado").value;
+
+             /*     while (sCad.indexOf(sBuscado) != -1) {
+                        var sCad = sCad.replace(sBuscado, "XXXXX");
+                  }
+*/
+                  sCad=sCad.replaceAll(sBuscado,"XXXXX");
+
+                  document.getElementById("resultado").innerHTML = sCad;
+            }
+            // realiza la búsqueda y sustitución con expresiones regulares
+            function buscar() {
+                  var sCad = document.getElementById("texto").value;
+                  var sBuscado = document.getElementById("buscado").value;
+
+                  var exp = new RegExp(sBuscado, "g"); //crea la expresión regular  - /cadena/g - 
+
+                  //var sFinal = sCad.replace(/dos/g, "XXXXX");
+                 var sFinal = sCad.replace(exp, "XXXXX");
+
+                  document.getElementById("resultado").innerHTML = sFinal;
+            }
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E417</title>
+</head>
+
+<body>
+    <script>
+
+        function ordenarArrayObjetos(array, propiedad) {
+            array.sort(ordena);
+
+            function ordena(a, b) {
+                 if (a[propiedad] < b[propiedad]) {
+                     return -1;
+                 } else {
+                     return 1;
+                 }
+            }
+
+            return array;
+        }
+
+
+
+        const personas = [
+            { nombre: 'Javi', edad: 30 },
+            { nombre: 'Lara', edad: 25 },
+            { nombre: 'Carlos', edad: 40 },
+            { nombre: 'María', edad: 35 }
+        ];
+
+        const personas2=personas.slice();
+
+      const personasOrdenadas = ordenarArrayObjetos(personas, 'edad');
+      const personasOrdenadas2 = ordenarArrayObjetos(personas2, 'nombre');
+
+         console.log(personasOrdenadas);
+         console.log(personasOrdenadas2);
+    </script>
+
+</body>
+
+</html>

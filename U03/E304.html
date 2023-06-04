@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E3.04: Contar Palabras</title>
+</head>
+
+<body>
+    <h2>Contar palabras </h2>
+    <textarea id="texto" rows="4" cols="50"></textarea>
+<button onclick="cuenta()">Cuenta</button>
+
+<p>Caracteres: <span id="ccar"></span></p>
+<p>Palabras: <span id="cpal"></span></p>
+<p>Caracteres sin espacios: <span id="ccarsb"></span></p>
+<p>Números: <span id="num"></span></p>
+
+    <script>
+        function cuenta(){
+            var texto=new String;
+            var textosb=new String;
+            texto=document.getElementById("texto").value;
+            
+            texto=texto.trim();
+            
+            textosb=texto.replace(/ /g,"");
+            
+            var pal=texto.split(" ");
+
+            var numeros="0123456789";
+            var cnum=0;
+            for(i=0; i<texto.length;i++){
+            if(numeros.indexOf(texto.charAt(i),0)!=-1){
+                cnum++;
+            }
+        }
+
+            document.getElementById("ccar").innerHTML=texto.length;
+            document.getElementById("cpal").innerHTML=pal.length;
+            document.getElementById("ccarsb").innerHTML=textosb.length;
+            document.getElementById("num").innerHTML=cnum;
+
+        }
+    </script>
+
+</body>
+
+</html>

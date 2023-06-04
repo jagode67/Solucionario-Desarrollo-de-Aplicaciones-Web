@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E5.03</title>
+</head>
+
+<body>
+
+    <script>
+        var palabras = ["sofá", "silla", "salón", "taza", "sonido"];
+        var regex = /s\S*o/g;
+        // \S* significa "cualquier número de caracteres que no sean espacios en blanco"
+        palabras.forEach(function (palabra) {
+            if (regex.test(palabra)) {
+                console.log(palabra + " empieza con s y termina con o.");
+            } else {
+                console.log(palabra + " no cumple con la expresión regular.");
+            }
+        });
+
+    </script>
+
+
+</body>
+
+</html>

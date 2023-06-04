@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>414</title>
+
+<script type="text/javascript">
+function cargarDatos(){
+	
+	var marca = prompt("Introducir marca: ", "");
+	var combustible = prompt("Introducir combustible: ", "");
+	var cJavi = new Coche(marca,combustible);
+	alert(cJavi.marca);
+	alert(cJavi.combustible);
+	alert(cJavi.cantidad);
+	
+	var cantidad = prompt("cantidad 1:","");
+	cJavi.rellena(cantidad);
+	alert(cJavi.cantidad);
+	
+	var cantidad = prompt("cantidad 2:","");
+	cJavi.rellena(cantidad);
+	alert(cJavi.cantidad);
+
+
+
+	//cta.mostrarDatos();
+}
+function validar(){
+
+}
+
+function Coche (marca,combustible) {
+	this.marca = marca;
+	this.combustible = combustible;
+	this.cantidad = 0;
+	this.mostrar=muestra;
+	this.rellena=rellena;
+	this.consume=consume;
+
+	function muestra(){
+		var salida="<p>Marca: " + this.marca + "</p>";
+		salida+="<p>Tipo gasolita: " + this.combustible + "</p>";
+		salida+="<p>Litros en deposito: " + this.cantidad + "</p>";
+		return (salida);
+	}
+
+	function rellena(cantidad)
+	{
+		cantidad=parseInt(cantidad);
+		this.cantidad=this.cantidad + cantidad;
+	}
+
+	function consume(cantidad)
+	{
+		cantidad=parseInt(cantidad);
+		this.cantidad=this.cantidad - cantidad;
+	}
+
+}
+
+function creaObj(){
+	marca=document.getElementById("marca").value;
+	combustible=document.getElementById("combustible").value;
+	miCoche=new Coche(marca,combustible);
+}
+
+function muestraObj(){
+	document.getElementById("resultado").innerHTML=miCoche.mostrar();
+}
+
+function repostar(){
+	var cantidad=document.getElementById("cantidad").value;
+	miCoche.rellena(cantidad);
+}
+
+function consumir(){
+	var cantidad=document.getElementById("cantidad").value;
+	miCoche.consume(cantidad);
+}
+
+var miCoche;
+
+</script>
+</head>
+<body>
+
+
+    <div style="width: 50%;  float: left;">
+
+        <p><label for="marca">Marca: </label> <input type="text" id="marca" name="marca"
+                placeholder="Marca de coche"> </p>
+        <p><label for="combustible">Tipo combustible: </label> <input type="text" id="combustible" name="combustible"
+                placeholder="diesel o gasolita"></p>
+
+        <button onclick="creaObj();">Crea objeto</button>
+
+
+		<p><label for="cantidad">Cantidad repostada:</label> <input type="text" id="cantidad" name="cantidad"
+			placeholder="litros respotados/gastados"></p>
+
+
+		<button onclick="repostar();">Repostar</button>
+		<button onclick="consumir();">Consumir</button>
+
+    </div>
+    <div style="width: 45%;  height: 200px; float: right; border: 1px blue solid;padding: 10px;">
+		<div id="resultado" style="padding: 10px; height: 150px;"></div>
+		<button onclick="muestraObj();">Muestra</button>
+    </div>
+
+</body>
+</html>

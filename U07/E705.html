@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<title>7.05 Carga una tabla</title>
+
+<head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var tablaBody = document.getElementById("tabla-body");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://javigomez.org/ESIC/DWEC/705.xml", true); 
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+                    cargarTabla(xmlDoc);
+                } 
+            };
+            xhr.send();
+
+            function cargarTabla(xmlDoc) {
+                var datos = xmlDoc.getElementsByTagName("dato");
+
+                for (var i = 0; i < datos.length; i++) {
+                    var nombre = datos[i].getElementsByTagName("nombre")[0].textContent;
+                    var edad = datos[i].getElementsByTagName("edad")[0].textContent;
+                    var email = datos[i].getElementsByTagName("email")[0].textContent;
+
+                    var fila = document.createElement("tr");
+                    var columnaNombre = document.createElement("td");
+                    var columnaEdad = document.createElement("td");
+                    var columnaEmail = document.createElement("td");
+
+                    columnaNombre.textContent = nombre;
+                    columnaEdad.textContent = edad;
+                    columnaEmail.textContent = email;
+
+                    fila.appendChild(columnaNombre);
+                    fila.appendChild(columnaEdad);
+                    fila.appendChild(columnaEmail);
+
+                    tablaBody.appendChild(fila);
+                }
+            }
+        });
+
+    </script>
+</head>
+
+<body>
+    <h2>Tabla de datos</h2>
+    <table id="tabla-datos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-body">
+        </tbody>
+    </table>
+</body>
+
+</html>

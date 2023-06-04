@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E6.03 Click y dobleClick</title>
+    <style>
+        .resaltado {
+            background-color: lightgray;
+        }
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de elementos</h1>
+    <ul id="lista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+        <li>Elemento 4</li>
+        <li>Elemento 5</li>
+    </ul>
+    <script type="text/javascript">
+            var lista = document.getElementById("lista");
+            var elementos = lista.getElementsByTagName("li");
+
+            // Agregar evento de clic a cada elemento de la lista
+            for (var i = 0; i < elementos.length; i++) {
+                elementos[i].addEventListener("click", function () {
+                    this.classList.add("resaltado");
+                });
+
+                elementos[i].addEventListener("dblclick", function () {
+                    this.parentNode.removeChild(this);
+                });
+            }
+        
+    </script>
+</body>
+
+</html>

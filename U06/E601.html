@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E6.01 Concatena</title>
+</head>
+
+<body>
+    <label>Nombre</label>
+    <input type="text" id="nombre">
+    <label>Apellido</label>
+    <input type="text" id="apellido">
+    <button id="btnEnviar">Enviar</button>
+    <label>Resultado</label>
+    <div id="resultado"></div>
+
+    <script type="text/javascript">
+        // Obtener los elementos del formulario por su id
+        let nombreInput = document.getElementById("nombre");
+        let apellidoInput = document.getElementById("apellido");
+        let btnEnviar = document.getElementById("btnEnviar");
+        let resultadoElemento = document.getElementById("resultado");
+
+        // Crear el evento al hacer clic en el botón
+        btnEnviar.addEventListener("click", function () {
+            // Obtener los valores de los campos de texto
+            let nombre = nombreInput.value;
+            let apellido = apellidoInput.value;
+            // Concatenar los valores
+            let resultado = `${nombre} ${apellido}`;
+            // Mostrar el resultado en el elemento
+            resultadoElemento.textContent = resultado;
+        });
+
+    </script>
+
+</body>
+
+</html>

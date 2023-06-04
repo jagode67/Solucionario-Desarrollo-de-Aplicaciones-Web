@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E7.09 colores y planetas</title>
+    <script>
+        var xml="";
+        function loadXML() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    xml=this.responseXML
+                    parseXML();
+                }
+            };
+            xhttp.open("GET", "https://javigomez.org/ESIC/DWEC/709.xml", true); 
+            xhttp.send();
+        }
+
+        function parseXML() {
+            var select1 = document.getElementById("opciones1");
+            var select2 = document.getElementById("opciones2");
+            select2.innerHTML = ""; // Reinicia el contenido del segundo combo al cambiar la selección
+
+            var conceptos = xml.getElementsByTagName("datos")[0];
+            var opciones = conceptos.getElementsByTagName("dato");
+
+            var option = document.createElement("option");
+            option.text = "Seleccionar un concepto";
+            select1.add(option);
+
+            for (var i = 0; i < opciones.length; i++) {
+                option = document.createElement("option");
+                option.text = opciones[i].textContent;
+                select1.add(option);
+            }
+        }
+
+        function mostrarOpciones() {
+            var select1 = document.getElementById("opciones1");
+            var select2 = document.getElementById("opciones2");
+            var seleccionado = select1.options[select1.selectedIndex].text;
+            select2.innerHTML = ""; // Reinicia el contenido del segundo combo al cambiar la selección
+
+            var datos = xml.getElementsByTagName("datos");
+            for (var i = 0; i < datos.length; i++) {
+                if (datos[i].getAttribute("id") == seleccionado) {
+                    var opciones = datos[i].getElementsByTagName("dato");
+                    for (var j = 0; j < opciones.length; j++) {
+                        var option = document.createElement("option");
+                        option.text = opciones[j].textContent;
+                        select2.add(option);
+                    }
+                    break;
+                }
+            }
+        }
+
+        function mostrarSeleccion() {
+            var select2 = document.getElementById("opciones2");
+            var seleccionado = select2.options[select2.selectedIndex].text;
+            alert(seleccionado);
+        }
+
+        // Cargar el XML automáticamente al cargar la página
+        document.addEventListener("DOMContentLoaded", function(event) {
+            loadXML();
+        });
+    </script>
+</head>
+<body>
+    <h2>Selecciona una opción:</h2>
+    <select id="opciones1" onchange="mostrarOpciones()"></select>     <select id="opciones2"></select>
+    <button onclick="mostrarSeleccion()">Mostrar selección</button>
+</body>
+</html>

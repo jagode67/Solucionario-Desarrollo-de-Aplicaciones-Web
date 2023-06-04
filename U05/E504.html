@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E5.04</title>
+</head>
+
+<body>
+
+    <script>
+        const texto = "Estas palabras complen abcd, aabc, aefg, ante, asia pero no aa, abcde o ab. adios";
+        const expresionRegular = /a\S{3}\b/g;
+        const palabrasEncontradas = texto.match(expresionRegular);
+        console.log(palabrasEncontradas);
+    </script>
+
+
+</body>
+
+</html>

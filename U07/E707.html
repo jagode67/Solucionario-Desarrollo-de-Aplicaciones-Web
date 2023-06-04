@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E7.07 Carga de un archivo de texto</title>
+
+    <script type="text/javascript" language="javascript">
+        window.addEventListener("load", llama, true);
+
+        function llama() {
+            peticion('http://javigomez.org/ESIC/DWEC/707.ax');
+        }
+        function peticion(url) {
+            http_request = false;
+            http_request = new XMLHttpRequest();
+            http_request.overrideMimeType('text/xml');
+            http_request.onreadystatechange = respuesta;
+            http_request.open('GET', url, true);
+            http_request.send();
+        }
+        function respuesta() {
+            if (http_request.readyState == 4) {
+                if (http_request.status == 200) {
+                    carga(http_request.responseText);
+                } else {
+                    alert('Hubo problemas con la petición.');
+                }
+            }
+        }
+
+        function carga(r) {
+            var ret = [];
+            ret = r.split(/;/);
+            for (i = 0; i < ret.length; i++) {
+                var sel=document.getElementById("concep");
+                var op=document.createElement("option");
+                var top=document.createTextNode(ret[i]);
+
+                op.appendChild(top);
+                sel.append(op);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <label for="concep">Selecciona el concepto:</label>
+    <select name="concep" id="concep">
+    </select>
+</body>
+
+</html>

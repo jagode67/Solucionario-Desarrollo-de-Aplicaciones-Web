@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E8.02</title>
+</head>
+
+<body>
+  <select id="opciones">
+    <option value="opcion1">Opción 1</option>
+    <option value="opcion2">Opción 2</option>
+    <option value="opcion3">Opción 3</option>
+  </select>
+
+  <script>
+    // Verificar si el navegador admite LocalStorage
+    if (typeof (Storage) !== "undefined") {
+      // Obtener el elemento HTML de la lista desplegable
+      var selectElement = document.getElementById("opciones");
+
+      // Verificar si hay una opción almacenada en LocalStorage
+      if (localStorage.opcionSeleccionada) {
+        // Obtener la opción almacenada
+        var opcionGuardada = localStorage.opcionSeleccionada;
+
+        // Seleccionar la opción almacenada en la lista desplegable
+        selectElement.value = opcionGuardada;
+      }
+
+      // Agregar un evento al cambio de selección en la lista desplegable
+      selectElement.addEventListener("change", function () {
+        // Obtener la opción seleccionada
+        var opcionSeleccionada = selectElement.value;
+
+        // Guardar la opción seleccionada en LocalStorage
+        localStorage.opcionSeleccionada = opcionSeleccionada;
+      });
+    } else {
+      // El navegador no admite LocalStorage
+      console.log("Tu navegador no admite LocalStorage.");
+    }
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E8.01</title>
+</head>
+
+<body>
+    <input type="text" id="inputNombre" placeholder="Introduce tu nombre">
+    <button id="btnGuardar">Guardar</button>
+    <p id="nombre"></p>
+    
+
+
+    <script>
+        // Verificar si el navegador admite LocalStorage
+        if (typeof (Storage) !== "undefined") {
+            // Obtener el elemento HTML donde se mostrará el nombre almacenado
+            var nombreElement = document.getElementById("nombre");
+
+            // Verificar si hay un nombre almacenado en LocalStorage
+            if (localStorage.nombre) {
+                // Mostrar el nombre almacenado
+                nombreElement.textContent = "Hola, " + localStorage.nombre + "!";
+            }
+
+            // Obtener el campo de texto donde el usuario introducirá su nombre
+            var inputElement = document.getElementById("inputNombre");
+
+            // Agregar un evento al botón de guardar
+            document.getElementById("btnGuardar").addEventListener("click", function () {
+                // Obtener el valor introducido por el usuario
+                var nombre = inputElement.value;
+
+                // Guardar el nombre en LocalStorage
+                localStorage.nombre = nombre;
+
+                // Mostrar el nombre almacenado
+                nombreElement.textContent = "Hola, " + nombre + "!";
+            });
+        } else {
+            // El navegador no admite LocalStorage
+            console.log("Tu navegador no admite LocalStorage.");
+        }
+
+
+    </script>
+</body>
+
+</html>

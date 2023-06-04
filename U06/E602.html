@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E6.02 Cambio de color</title>
+  <style>
+    .elemento {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="elemento">Elemento 1</div>
+  <div class="elemento">Elemento 2</div>
+  <div class="elemento">Elemento 3</div>
+  <div class="elemento">Elemento 4</div>
+  <div class="elemento">Elemento 5</div>
+
+  <script type="text/javascript">
+    // Obtener todos los elementos con la clase "elemento"
+    var elementos = document.getElementsByClassName("elemento");
+
+    // Crear una función para resaltar el elemento clicado
+    function resaltarElemento() {
+      // Cambiar el color de fondo del elemento clicado
+      this.style.backgroundColor = "lightgray";
+
+      // Deshabilitar el evento de clic en los demás elementos
+      for (var i = 0; i < elementos.length; i++) {
+        if (elementos[i] !== this) {
+          elementos[i].removeEventListener("click", resaltarElemento);
+        }
+      }
+    }
+
+    // Asignar el evento de clic a todos los elementos
+    for (var i = 0; i < elementos.length; i++) {
+      elementos[i].addEventListener("click", resaltarElemento);
+    }
+
+  </script>
+
+</body>
+
+</html>

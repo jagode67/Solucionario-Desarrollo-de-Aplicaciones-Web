@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>E3.01 Relog</title>
+</head>
+
+<body>
+    <div id="Hora"></div>
+
+    <script>
+        function crono() {
+            var elCrono;
+            var miFecha = new Date();
+            horas = miFecha.getHours();
+            min = miFecha.getMinutes();
+            seg = miFecha.getSeconds();
+            dd = miFecha.getDate();
+            if (dd < 10) dd = "0" + dd;
+            mm = miFecha.getMonth();
+            switch (mm) {
+                case 0:
+                    sMes = "Enero"; break;
+                case 1:
+                    sMes = "Febrero"; break;
+                case 2:
+                    sMes = "Marzo"; break;
+                case 3:
+                    sMes = "Abril"; break;
+                case 4:
+                    sMes = "Mayo"; break;
+                case 5:
+                    sMes = "Junio"; break;
+                case 6:
+                    sMes = "Julio"; break;
+                case 7:
+                    sMes = "Agosto"; break;
+                case 8:
+                    sMes = "Septiembre"; break;
+                case 9:
+                    sMes = "Octubre"; break;
+                case 10:
+                    sMes = "Noviembre"; break;
+                case 11:
+                    sMes = "Diciembre"; break;
+            }
+            yy = miFecha.getFullYear();
+
+            dSem = miFecha.getDay();
+            switch (dSem) {
+                case 0:
+                    sSem = "Domingo"; break;
+                case 1:
+                    sSem = "Lunes"; break;
+                case 2:
+                    sSem = "Martes"; break;
+                case 3:
+                    sSem = "Miercoles"; break;
+                case 4:
+                    sSem = "Jueves"; break;
+                case 5:
+                    sSem = "Viernes"; break;
+                case 6:
+                    sSem = "Sábado"; break;
+            }
+            if (horas > 12) {
+                momento = "pm";
+                horas -= 12;
+            }
+            else {
+                momento = "am";
+            }
+            if (horas < 10) horas = "0" + horas;
+            if (min < 10) min = "0" + min;
+            if (seg < 10) seg = "0" + seg;
+            document.getElementById("Hora").innerHTML = sSem + " " + dd + "/" + sMes + "/" + yy + " " + horas + ":" + min + ":" + seg + " " + momento;
+        }
+        window.onload = function () {
+            elCrono = setInterval(crono, 1000);
+        }
+    </script>
+</body>
+
+</html>

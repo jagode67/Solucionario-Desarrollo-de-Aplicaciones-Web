@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E5.08</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <label for="country">País:</label>
+        <select name="country" id="country">
+            <option value="">Selecciona un país</option>
+            <option value="es">España</option>
+            <option value="fr">Francia</option>
+            <option value="uk">Reino Unido</option>
+            <option value="us">Estados Unidos</option>
+        </select>
+        <button type="submit">Enviar</button>
+        <p id="error" style="color: red; display: none;">Por favor, selecciona un país</p>
+    </form>
+
+    <script>
+        const form = document.querySelector('#myForm');
+        const select = document.querySelector('#country');
+        const error = document.querySelector('#error');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (select.value === '') {
+                error.style.display = 'block';
+            } else {
+                error.style.display = 'none';
+                form.submit();
+            }
+        });
+
+    </script>
+</body>
+
+</html>

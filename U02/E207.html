@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2.07</title>
+</head>
+
+<body>
+
+    <script>
+        nota1 = Number(prompt("Nota 1:"));
+        while (isNaN(nota1)) {
+            alert("La nota 1 debe ser numérica");
+            nota1 = Number(prompt("Nota 1:"));
+        }
+        nota2 = Number(prompt("Nota 2:"));
+        while (isNaN(nota2)) {
+            alert("La nota 2 debe ser numérica");
+            nota2 = Number(prompt("Nota 2:"));
+        }
+        nota3 = Number(prompt("Nota 3:"));
+        while (isNaN(nota3)) {
+            alert("La nota 3 debe ser numérica");
+            nota3 = Number(prompt("Nota 3:"));
+        }
+
+        media = (nota1 + nota2 + nota3) / 3;
+        if (media < 5)
+            alert("Suspendido: " + media);
+        else
+            alert("Aprobado: " + media);
+    </script>
+
+</body>
+
+</html>

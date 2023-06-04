@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.02</title>
+</head>
+
+<body>
+    <h1>4.02</h1>
+    <p id="parrafo">Introducir números enteros separados por comas</p>
+
+    <input type="text" id="text1"></input>
+    <input type="text" id="text2"></input>
+    <br><br>    <button onclick="unir()">Unir</button>
+    <input type="button" value="Reiniciar" onclick="Reiniciar()">
+    <p id="array"></p>
+
+    <p id="resultado"></p>
+
+    <script>
+        function Reiniciar() {
+            location.reload();
+        }
+
+        function unir() {
+            /*var array = document.getElementById("text").value.split(/,/);*/
+            var array1 = document.getElementById("text1").value.split(",");
+            var array2 = document.getElementById("text2").value.split(",");
+            var carray = array1.concat(array2);
+
+            //RESULTADO
+
+            document.getElementById("resultado").innerHTML = "La unión es:" + carray
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

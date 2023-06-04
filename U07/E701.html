@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <title>7.01 Obtener mensaje http_request</title>
+<head>
+    <script>
+        function obtenerMensaje() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("mensaje").textContent = this.responseText;
+                }
+            };
+            xhttp.open("GET", "https://javigomez.org/ESIC/DWEC/info.txt", true); // Reemplaza "mensaje.txt" con la URL del archivo de texto o la URL del endpoint del servidor
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Obtener Mensaje</h2>
+    <button onclick="obtenerMensaje()">Obtener</button>
+    <p id="mensaje"></p>
+</body>
+</html>

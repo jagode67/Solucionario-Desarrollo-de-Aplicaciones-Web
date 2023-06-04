@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E5.02</title>
+</head>
+
+<body>
+
+    <div id="nombre"></div>
+    <form>
+        <label for="input-nombre">Introduce tu nombre:</label>
+        <input type="text" id="input-nombre">
+        <button type="submit">Guardar</button>
+    </form>
+
+    <script>
+        const nombreElement = document.getElementById('nombre');
+        const inputNombreElement = document.getElementById('input-nombre');
+        const formElement = document.querySelector('form');
+
+        formElement.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nombre = inputNombreElement.value;
+            document.cookie = `nombre=${nombre}`;
+            mostrarMensaje(nombre);
+        });
+
+        function mostrarMensaje(nombre) {
+            nombreElement.innerText = `¡Bienvenido ${nombre}!`;
+        }
+
+        function obtenerNombreDeCookie() {
+            const cookie = document.cookie.split(';').find(cookie => cookie.startsWith('nombre='));
+            if (cookie) {
+                return cookie.split('=')[1];
+            }
+            return null;
+        }
+
+        const nombreDeCookie = obtenerNombreDeCookie();
+        if (nombreDeCookie) {
+            mostrarMensaje(nombreDeCookie);
+        }
+    </script>
+
+
+</body>
+
+</html>

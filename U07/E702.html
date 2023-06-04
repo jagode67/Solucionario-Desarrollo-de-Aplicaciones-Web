@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <title>7.02 Obtener mensaje fetch</title>
+<head>
+    <script>
+        function obtenerMensaje() {
+            fetch("https://javigomez.org/ESIC/DWEC/info.txt") // Reemplaza "mensaje.txt" con la URL del archivo de texto o la URL del endpoint del servidor
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("mensaje").textContent = data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h2>Obtener Mensaje</h2>
+    <button onclick="obtenerMensaje()">Obtener</button>
+    <p id="mensaje"></p>
+</body>
+</html>

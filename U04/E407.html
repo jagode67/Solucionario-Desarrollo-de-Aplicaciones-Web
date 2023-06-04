@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.07</title>
+</head>
+
+<body>
+    <h1>4.07 </h1>
+    <h2>Inserta un nuevo elemento del array en un sitio determinado <br>quitando el que está (utilizar splice())</h2>
+    <p>Introduce los primeros enteros separados por comas: </p>
+    <input type="text" placeholder="Array" id="array">
+    <p>
+    Valor: <input type="text" placeholder="Texto a añadir" id="valor">
+    Posición del Array: <input type="number" placeholder="posición" id="posicion">
+
+          <input type="button" value="Sustituir" onclick="sustituir()">
+    </p>
+  
+    <input type="button" value="Reiniciar" onclick="reiniciar()">
+    <p id="resultado"></p>
+    
+  <script>
+  var array=[], tmp=0;
+
+  function sustituir()
+  {
+      array=document.getElementById("array").value.split(/,/);
+      var posicion=document.getElementById("posicion").value;
+      var valor=document.getElementById("valor").value;
+
+      array.splice(posicion-1,1,valor);
+
+      array.forEach(muestra);
+  }
+  function muestra(ele,ind,arr){
+    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML +"Ind:"+ ind + " elemento: " + ele + "<br>";
+  }
+  function reiniciar()
+  {
+        location.reload();
+  }
+  
+  </script>
+  </body>
+
+</html>

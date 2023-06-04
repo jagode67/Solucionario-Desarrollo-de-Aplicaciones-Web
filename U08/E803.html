@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E8.03</title>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th>Seleccionar</th>
+      <th>Nombre</th>
+    </tr>
+    <tr>
+      <td><input type="checkbox" class="check"></td>
+      <td>Elemento 1</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" class="check"></td>
+      <td>Elemento 2</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" class="check"></td>
+      <td>Elemento 3</td>
+    </tr>
+  </table>
+  <button id="btnGrabar">Grabar</button>
+
+
+  <script>
+    // Verificar si el navegador admite LocalStorage
+    if (typeof (Storage) !== "undefined") {
+      // Obtener los elementos HTML de los checkboxes
+      var checkboxes = document.getElementsByClassName("check");
+
+      // Cargar las opciones seleccionadas almacenadas en LocalStorage
+      cargarOpcionesSeleccionadas();
+
+      // Agregar un evento al botón de grabar
+      document.getElementById("btnGrabar").addEventListener("click", function () {
+        // Obtener las opciones seleccionadas
+        var opcionesSeleccionadas = obtenerOpcionesSeleccionadas();
+
+        // Guardar las opciones seleccionadas en LocalStorage
+        guardarOpcionesSeleccionadas(opcionesSeleccionadas);
+      });
+
+      // Función para cargar las opciones seleccionadas almacenadas en LocalStorage
+      function cargarOpcionesSeleccionadas() {
+        // Obtener las opciones seleccionadas almacenadas
+        var opcionesGuardadas = localStorage.getItem("opcionesSeleccionadas");
+
+        if (opcionesGuardadas) {
+          // Convertir las opciones a un array
+          var opcionesArray = opcionesGuardadas.split(",");
+
+          // Marcar los checkboxes correspondientes
+          for (var i = 0; i < checkboxes.length; i++) {
+            var opcion = checkboxes[i].parentNode.nextElementSibling.textContent;
+            if (opcionesArray.includes(opcion)) {
+              checkboxes[i].checked = true;
+            }
+          }
+        }
+      }
+
+      // Función para obtener las opciones seleccionadas
+      function obtenerOpcionesSeleccionadas() {
+        var opcionesSeleccionadas = [];
+
+        // Recorrer los checkboxes y obtener los seleccionados
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].checked) {
+            var opcion = checkboxes[i].parentNode.nextElementSibling.textContent;
+            opcionesSeleccionadas.push(opcion);
+          }
+        }
+
+        return opcionesSeleccionadas;
+      }
+
+      // Función para guardar las opciones seleccionadas en LocalStorage
+      function guardarOpcionesSeleccionadas(opcionesSeleccionadas) {
+        // Convertir el array de opciones en un string separado por comas
+        var opcionesString = opcionesSeleccionadas.join(",");
+
+        // Guardar las opciones seleccionadas en LocalStorage
+        localStorage.setItem("opcionesSeleccionadas", opcionesString);
+      }
+    } else {
+      // El navegador no admite LocalStorage
+      console.log("Tu navegador no admite LocalStorage.");
+    }
+  </script>
+</body>
+
+</html>

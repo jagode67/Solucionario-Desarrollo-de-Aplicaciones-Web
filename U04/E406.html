@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.06</title>
+</head>
+
+<body>
+    <h1>4.06</h1>
+    <p id="parrafo">Introduce una tabla y ordena los campos</p>
+
+    <input type="text" id="text"></input>
+    <br><br><input type="button" value="Ordenar" onclick="ordenar()"></input>
+    <input type="button" value="Reiniciar" onclick="Reiniciar()">
+    <p id="array"></p>
+
+    <p id="resultado"></p>
+
+    <script>
+        function Reiniciar() {
+            location.reload();
+        }
+
+        function ordenar() {
+            /*var array = document.getElementById("text").value.split(/,/);*/
+            var array = document.getElementById("text").value.split(",");
+
+            array.forEach(quitablancos);
+
+            var array2=array.sort();
+
+
+            //RESULTADO
+             array.forEach(muestra);
+  }
+  
+  function quitablancos(ele,ind,arr){
+             arr[ind]=ele.trim();
+        }
+
+
+  function muestra(ele,ind,arr){
+    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML +"Ind:"+ ind + " elemento: " + ele + "<br>";
+  }
+
+
+    </script>
+
+
+</body>
+
+</html>

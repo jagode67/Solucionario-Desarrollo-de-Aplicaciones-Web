@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>E5.01 Cookies</title>
+    <style>
+
+    </style>
+
+<script type="text/javascript">
+
+
+
+    function anadir() {
+        setCookie("codigo", document.getElementById("codigo").value);
+        setCookie("nombre", document.getElementById("nombre").value);
+    }
+    function borrar(){
+        delCookie("codigo");
+        delCookie("nombre");
+    }
+    function delCookie(cname){
+    document.cookie = cname +"=;expires=Thu, 01 Jan 1970 00:00:00 UTC";
+}
+    function setCookie(cname, cvalue) {
+        console.log (cname + ":"+cvalue);
+        document.cookie = cname + "=" + cvalue + "; ";
+        console.log (document.cookie);
+    }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ')
+                c = c.substring(1);
+            if (c.indexOf(name) == 0)
+                return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    function getCookie2(cname){
+        a = document.cookie.substring(document.cookie.indexOf(cname + '=') + cname.length + 1,document.cookie.length);
+   if(a.indexOf(';') != -1)
+	a = a.substring(0,a.indexOf(";"));
+   return a;
+
+    }
+
+</script>
+
+
+</head>
+
+<body>
+    <h2>Cookies</h2>
+
+
+    Codigo: <input type="text" id="codigo">
+    Nombre: <input type="text" id="nombre">
+
+    <button onclick="anadir()">Añadir cookies</button>
+    <button onclick="borrar()">Borrar cookies</button>
+
+    <script>
+        if (getCookie("codigo")!=""){
+            document.getElementById("codigo").value=getCookie("codigo");
+        }
+        if (getCookie("nombre")!=""){
+            document.getElementById("nombre").value=getCookie2("nombre");
+        }
+        </script>
+</body>
+</html>

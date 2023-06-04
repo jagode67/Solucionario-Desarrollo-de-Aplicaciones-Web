@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2.09</title>
+</head>
+
+<body>
+
+
+    <div id="caja" style="font-family: 'Courier New';"></div> 
+    <script>
+
+        var cad = "";
+        for (i = 0; i < 5; i++) { //bucle de subida
+            for (j = 0; j < 5-i; j++) { //para meter los blancos
+                cad=cad+"&nbsp;";
+            }
+            for (j=0;j<i;j++){ //para meter * a la izq
+                cad=cad+"*"
+            }
+            for (j=0;j<i-1;j++){ //para meter * a la derecha
+                cad=cad+"*"
+            }
+            document.getElementById("caja").innerHTML=document.getElementById("caja").innerHTML + cad + "<br>";
+            console.log(cad);
+            cad=""
+        }
+
+        cad="";
+        for (i = 5; i > 0; i--) { //bucle de bajada
+            console.log("i "+ i);
+            for (j = 5; j > 0+i; j--) { //para meter los blancos
+                cad=cad+"&nbsp;";
+            }
+            for (j=0;j<i;j++){ //para meter * a la izq
+                cad=cad+"*"
+            }
+            for (j=0;j<i-1;j++){ //para meter * a la derecha
+                cad=cad+"*"
+            }
+            document.getElementById("caja").innerHTML=document.getElementById("caja").innerHTML + cad + "<br>";
+            console.log(cad);
+            cad="";
+        }
+</script>
+
+
+</body>
+
+</html>

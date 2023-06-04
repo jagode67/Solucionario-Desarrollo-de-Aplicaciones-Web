@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>3.11 Características de la pantalla</title>
+<body>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+
+    <script>
+        document.getElementById("demo").innerHTML =
+            "Ancho: " + screen.width;
+        document.getElementById("demo1").innerHTML =
+            "Alto:" + screen.height;
+        document.getElementById("demo2").innerHTML =
+            "Ancho disponible: " + screen.availWidth;
+        document.getElementById("demo3").innerHTML =
+            "Alto disponible: " + screen.availHeight;
+        document.getElementById("demo4").innerHTML =
+            "Profundidad color: " + screen.colorDepth;
+        document.getElementById("demo5").innerHTML =
+            "Profundiad pixel: " + screen.pixelDepth;
+
+    </script>
+
+</body>
+
+</html>

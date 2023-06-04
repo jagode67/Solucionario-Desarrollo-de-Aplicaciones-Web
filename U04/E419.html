@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E419</title>
+</head>
+
+<body>
+  <script>
+
+    class Animal {
+      constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+      }
+      comer() {
+        console.log("El animal está comiendo");
+      }
+    }
+
+    class Perro extends Animal {
+      constructor(nombre, edad, raza) {
+        super(nombre, edad);
+        this.raza = raza;
+      }
+      ladrar() {
+        console.log("¡Guau!");
+      }
+    }
+
+    const miPerro = new Perro("Bobby", 3, "Labrador");
+    miPerro.comer();
+    miPerro.ladrar();
+    console.log(`Mi perro ${miPerro.nombre} es un ${miPerro.raza} de ${miPerro.edad} años.`);
+
+  </script>
+
+</body>
+
+</html>

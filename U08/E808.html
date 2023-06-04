@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E8.08 Borrado de registros con IndexedDB</title>
+  <script>
+    var db;
+    var dbName = "mensajesDB";
+    var objectStoreName = "mensajesStore";
+
+    function iniciarIndexedDB() {
+      var request = indexedDB.open(dbName, 1);
+
+      request.onerror = function(event) {
+        console.log("Error al abrir la base de datos:", event.target.error);
+      };
+
+      request.onsuccess = function(event) {
+        db = event.target.result;
+        console.log("Base de datos abierta correctamente.");
+        mostrarMensajes();
+      };
+
+      request.onupgradeneeded = function(event) {
+        db = event.target.result;
+        console.log("Base de datos creada correctamente.");
+      };
+    }
+
+    function borrarRegistro() {
+      var orden = document.getElementById("orden").value;
+
+      if (!orden) {
+        console.log("Ingrese un orden válido.");
+        return;
+      }
+
+      var transaction = db.transaction([objectStoreName], "readwrite");
+      var objectStore = transaction.objectStore(objectStoreName);
+
+      var request = objectStore.getAll();
+
+      request.onsuccess = function(event) {
+        var mensajes = event.target.result;
+
+        if (mensajes.length >= orden) {
+          var idBorrar = mensajes[orden - 1].id;
+
+          var deleteRequest = objectStore.delete(idBorrar);
+
+          deleteRequest.onsuccess = function() {
+            console.log("Registro borrado correctamente.");
+            mostrarMensajes();
+          };
+
+          deleteRequest.onerror = function(event) {
+            console.log("Error al borrar el registro:", event.target.error);
+          };
+        } else {
+          console.log("El orden ingresado no es válido.");
+        }
+      };
+
+      request.onerror = function(event) {
+        console.log("Error al obtener los mensajes:", event.target.error);
+      };
+    }
+
+    function mostrarMensajes() {
+      var transaction = db.transaction([objectStoreName], "readonly");
+      var objectStore = transaction.objectStore(objectStoreName);
+
+      var request = objectStore.getAll();
+
+      request.onsuccess = function(event) {
+        var mensajes = event.target.result;
+
+        var listaHTML = "<ul>";
+        if (mensajes.length > 0) {
+          for (var i = 0; i < mensajes.length; i++) {
+            listaHTML += "<li>" + mensajes[i].mensaje + "</li>";
+          }
+        } else {
+          listaHTML += "<li>No se han guardado mensajes.</li>";
+        }
+        listaHTML += "</ul>";
+
+        document.getElementById("mensajes").innerHTML = listaHTML;
+      };
+
+      request.onerror = function(event) {
+        console.log("Error al obtener los mensajes:", event.target.error);
+      };
+    }
+  </script>
+</head>
+<body onload="iniciarIndexedDB()">
+  <h3>Borrado de registros con IndexedDB</h3>
+
+  <label for="orden">Introducir el orden del registro a borrar:</label>
+  <input type="number" id="orden" min="1">
+  <button onclick="borrarRegistro()">Borrar</button>
+
+  <h3>Mensajes guardados:</h3>
+  <div id="mensajes"></div>
+</body>
+</html>

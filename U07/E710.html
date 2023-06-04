@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E7.10 Carga de un combo con JSON</title>
+
+    <script type="text/javascript" language="javascript">
+        window.addEventListener("load", llama, true);
+
+        function llama() {
+            peticion('https://javigomez.org/ESIC/DWEC/710.json');
+        }
+        function peticion(url) {
+            http_request = false;
+            http_request = new XMLHttpRequest();
+            http_request.overrideMimeType('text/xml');
+            // Ver nota sobre esta linea al final
+            http_request.onreadystatechange = respuesta;
+            http_request.open('GET', url, true);
+            http_request.send();
+        }
+        function respuesta() {
+            if (http_request.readyState == 4) {
+                if (http_request.status == 200) {
+                    carga(http_request.responseText);
+                } else {
+                    alert('Hubo problemas con la petición.');
+                }
+            }
+        }
+
+        function carga(r) {
+            const obj = JSON.parse(r);
+            for (i = 0; i < obj.provincias.length; i++) {
+                var sel = document.getElementById("concep");
+                var op = document.createElement("option");
+                var top = document.createTextNode(obj.provincias[i].nombre);
+                op.id = obj.provincias[i].codigo;
+
+                op.appendChild(top);
+                sel.append(op);
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <label for="concep">Selecciona el concepto:</label>
+    <select name="concep" id="concep">
+    </select>
+</body>
+
+</html>

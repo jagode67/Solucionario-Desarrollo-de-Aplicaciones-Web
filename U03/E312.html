@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<title>3.12 Ventanas</title>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Apertura y Cierre de Ventanas</title>
+  <script type="text/javascript">
+    var nuevaVentana;
+    function crearNueva() {
+      nuevaVentana = window.open("http://www.google.es", "", "height=400,width=800");
+    }
+    function cerrarNueva() {
+        nuevaVentana.close(); 
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Abrimos y cerramos ventanas</h1>
+  <button onclick="crearNueva()">Crear Nueva Ventana</button>
+  <button onclick="cerrarNueva()">Cerrar Nueva Ventana</button>
+</body>
+
+</html>

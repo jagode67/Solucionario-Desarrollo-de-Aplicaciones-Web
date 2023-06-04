@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E8.05</title>
+</head>
+
+<body>
+    <h2>Manipulación de lista con SessionStorage</h2>
+
+    <label for="nuevoElemento">Agregar elemento:</label>
+    <input type="text" id="nuevoElemento">
+    <button onclick="agregarElemento()">Agregar</button>
+
+    <label for="elementoEliminar">Eliminar elemento:</label>
+    <input type="text" id="elementoEliminar">
+    <button onclick="eliminarElemento()">Eliminar</button>
+
+    <h2>Lista completa:</h2>
+    <div id="lista"></div>
+    <script>
+        // Al cargar la página, mostrar la lista actualizada
+        mostrarLista();
+
+
+        function obtenerLista() {
+            var lista = sessionStorage.getItem("lista");
+            if (lista) {
+                return JSON.parse(lista);
+            } else {
+                return [];
+            }
+        }
+
+        function guardarLista(lista) {
+            sessionStorage.setItem("lista", JSON.stringify(lista));
+        }
+
+        function agregarElemento() {
+            var nuevoElemento = document.getElementById("nuevoElemento").value;
+            var lista = obtenerLista();
+            lista.push(nuevoElemento);
+            guardarLista(lista);
+            document.getElementById("nuevoElemento").value = "";
+            mostrarLista();
+        }
+
+        function eliminarElemento() {
+            var elementoEliminar = document.getElementById("elementoEliminar").value;
+            var lista = obtenerLista();
+            var indice = lista.indexOf(elementoEliminar);
+            if (indice !== -1) {
+                lista.splice(indice, 1);
+                guardarLista(lista);
+                document.getElementById("elementoEliminar").value = "";
+                mostrarLista();
+            }
+        }
+
+        function mostrarLista() {
+            var listaCompleta = obtenerLista();
+            var listaHTML = "<ul>";
+            if (listaCompleta.length > 0) {
+                for (var i = 0; i < listaCompleta.length; i++) {
+                    listaHTML += "<li>" + listaCompleta[i] + "</li>";
+                }
+            } else {
+                listaHTML += "<li>La lista está vacía.</li>";
+            }
+            listaHTML += "</ul>";
+            document.getElementById("lista").innerHTML = listaHTML;
+        }
+    </script>
+</body>
+
+</html>

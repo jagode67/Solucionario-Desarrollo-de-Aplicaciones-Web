@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.15. Juego de suma</title>
+</head>
+
+<body>
+
+    <p>Suma <span id="numero1"></span> + <span id="numero2"></span> </p>
+
+    <input type="text" id="solucion">
+
+    <button onclick="comprobar()">Comprobar</button>
+
+    <div id="resultado"></div>
+    <div id="tiempo"></div>
+
+
+
+
+
+
+
+    <script>
+
+        a = parseInt((Math.random()) * 99) + 1;
+        b = parseInt((Math.random()) * 99) + 1;
+
+        document.getElementById("numero1").innerHTML = a;
+        document.getElementById("numero2").innerHTML = b;
+
+
+
+        function comprobar() {
+
+            texto = document.getElementById("solucion").value;
+
+            if ((a + b) == texto) {
+                document.getElementById("resultado").innerHTML = "Correcto";
+                stop();
+            } else {
+                document.getElementById("resultado").innerHTML = "Incorrecto";
+            }
+
+        }
+
+
+        //Tiempo
+
+        var currentDateObj = new Date();
+        var uno;
+        var dos;
+
+        start();
+
+        function start() {
+            uno = currentDateObj.getTime();
+            document.getElementById("resultado").innerHTML = "";
+        }
+
+
+        function stop() {
+            currentDateObj = new Date();
+            var dos = currentDateObj.getTime();
+            var tiempo = dos - uno;
+            var seg = parseInt(tiempo / 1000);
+            var mili = tiempo % 1000;
+            var hor = 0;
+            console.log(mili);
+            mili = parseInt(mili / 10);
+            console.log(mili);
+            min = 0;
+            if (seg > 60) {
+                min = parseInt(seg / 60);
+                seg = seg % 60;
+            }
+            if (min > 60) {
+                hor = parseInt(min / 60);
+                min = min % 60;
+            }
+            if (mili < 10) mili = "0" + mili;
+            if (seg < 10) seg = "0" + seg;
+            if (min < 10) min = "0" + min;
+            if (hor < 10) hor = "0" + hor;
+
+            var txt = "Has tardado:"  + seg + ":" + mili + " s" ;
+            document.getElementById("tiempo").innerHTML = txt;
+        }
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

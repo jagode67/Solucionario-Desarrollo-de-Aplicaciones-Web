@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.19 Busca y sustituye</title>
+</head>
+
+<body>
+    <label for="texto">Introduce un texto:</label>
+    <textarea id="texto"></textarea>
+    <div>
+        <p></p>
+        <label for="buscar">Subcadena a buscar:</label>
+        <input type="text" id="buscar">
+        <label for="reemplazar">Subcadena de reemplazo:</label>
+        <input type="text" id="reemplazar">
+        <p></p>
+    </div>
+    <button onclick="reemplazarSubcadena()">Reemplazar</button>
+    <script>
+        function reemplazarSubcadena() {
+            // Obtener el valor del texto, la subcadena a buscar y la subcadena de reemplazo
+            var texto = document.getElementById("texto").value;
+            var buscar = document.getElementById("buscar").value;
+            var reemplazar = document.getElementById("reemplazar").value;
+
+            // Obtener la longitud de la subcadena a buscar
+            var longitudBuscar = buscar.length;
+
+            // Buscar todas las instancias de la subcadena a buscar y reemplazarlas con la subcadena de reemplazo
+            var index = texto.indexOf(buscar);
+            while (index !== -1) {
+                var inicio = texto.slice(0, index);
+                var final = texto.slice(index + longitudBuscar);
+                texto = inicio + reemplazar + final;
+                index = texto.indexOf(buscar, index + reemplazar.length);
+            }
+
+            // Asignar el texto reemplazado al valor del textarea
+            document.getElementById("texto").value = texto;
+        }
+    </script>
+</body>
+
+</html>

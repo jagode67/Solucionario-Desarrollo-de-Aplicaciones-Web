@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E418</title>
+</head>
+
+<body>
+    <script>
+
+        class Coche {
+            constructor(marca, modelo) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.encendido = false;
+            }
+
+            arrancar() {
+                if (!this.encendido) {
+                    console.log(`El ${this.marca} ${this.modelo} ha arrancado.`);
+                    this.encendido = true;
+                } else {
+                    console.log(`El coche ${this.marca} y modelo ${this.modelo} ya está arrancado.`);
+                }
+            }
+
+            parar() {
+                if (this.encendido) {
+                    console.log(`El coche ${this.marca} y modelo ${this.modelo} ha parado.`);
+                    this.encendido = false;
+                } else {
+                    console.log(`El coche ${this.marca} y modelo ${this.modelo} ya está parado.`);
+                }
+            }
+        }
+
+        const miCoche = new Coche("Toyota", "Corolla");
+        console.log(miCoche); // Coche {marca: 'Toyota', modelo: 'Corolla', encendido: false}
+        miCoche.arrancar(); // El Toyota Corolla ha arrancado.
+        miCoche.parar(); // El coche Toyota y modelo Corolla ha parado.
+        miCoche.parar(); // El coche Toyota y modelo Corolla ya está parado.
+        const miSCoche = new Coche("Seat", "Panda");
+        console.log(miSCoche); // Coche {marca: 'Seat', modelo: 'Panda', encendido: false}
+        miSCoche.arrancar(); // El Seat Panda ha arrancado.
+        miSCoche.arrancar(); // El coche Seat y modelo Panda ya está arrancado.
+        miSCoche.parar(); // El coche Seat y modelo Panda ha parado.
+
+    </script>
+
+</body>
+
+</html>

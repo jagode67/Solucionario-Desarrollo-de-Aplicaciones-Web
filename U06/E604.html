@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E6.04 Añadir a una lista</title>
+</head>
+
+<body>
+    <h1>Lista de elementos</h1>
+    <form id="formulario">
+      <input type="text" id="textoInput" placeholder="Introducir un elemento">
+      <button type="button" id="btnEnviar">Agregar</button>
+    </form>
+    <ul id="lista">
+    </ul>
+  <script>
+        var formulario = document.getElementById("formulario");
+        var textoInput = document.getElementById("textoInput");
+        var btnEnviar = document.getElementById("btnEnviar");
+        var lista = document.getElementById("lista");
+      
+        btnEnviar.addEventListener("click", function(event) {
+          //event.preventDefault();
+      
+          var nuevoElemento = document.createElement("li");
+          var texto = document.createTextNode(textoInput.value);
+          nuevoElemento.appendChild(texto);
+          lista.appendChild(nuevoElemento);
+      
+          textoInput.value = "";
+        });
+    </script>
+</body>
+
+</html>

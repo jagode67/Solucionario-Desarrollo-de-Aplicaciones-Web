@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E8.04</title>
+</head>
+
+<body>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" placeholder="Introducir su nombre">
+    <br>
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" placeholder="Introducir su teléfono">
+    <br>
+    <button id="btnGuardar">Guardar</button>
+    <div id="json"></div>
+
+
+
+    <script>
+        // Verificar si el navegador admite LocalStorage
+        if (typeof (Storage) !== "undefined") {
+            // Obtener los elementos HTML de los campos de entrada y el botón
+            var nombreInput = document.getElementById("nombre");
+            var telefonoInput = document.getElementById("telefono");
+            var btnGuardar = document.getElementById("btnGuardar");
+
+            // Cargar la información almacenada en LocalStorage
+            cargarInformacion();
+
+            // Agregar un evento al botón de guardar
+            btnGuardar.addEventListener("click", function () {
+                // Obtener los valores ingresados por el usuario
+                var nombre = nombreInput.value;
+                var telefono = telefonoInput.value;
+
+                // Crear un objeto con los datos
+                var contacto = {
+                    nombre: nombre,
+                    telefono: telefono
+                };
+
+                // Guardar el objeto como JSON en LocalStorage
+                localStorage.setItem("contacto", JSON.stringify(contacto));
+
+                // Mostrar un mensaje de éxito
+                alert("La información se ha guardado correctamente.");
+            });
+
+            // Función para cargar la información almacenada en LocalStorage
+            function cargarInformacion() {
+                // Obtener la información almacenada
+                var contactoGuardado = localStorage.getItem("contacto");
+
+                if (contactoGuardado) {
+
+                    document.querySelector("#json").innerHTML = contactoGuardado;
+                    // Convertir el JSON en un objeto
+                    var contacto = JSON.parse(contactoGuardado);
+
+                    // Mostrar la información en los campos de entrada
+                    nombreInput.value = contacto.nombre;
+                    telefonoInput.value = contacto.telefono;
+                }
+            }
+        } else {
+            // El navegador no admite LocalStorage
+            console.log("Tu navegador no admite LocalStorage.");
+        }
+
+
+
+    </script>
+</body>
+
+
+</html>

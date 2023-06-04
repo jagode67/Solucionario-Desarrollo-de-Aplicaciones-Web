@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.17. Código postal</title>
+</head>
+
+<body>
+    <p>Codigo postal</p>
+    <input type="text" id="postal" maxlength="5">
+    <button onclick="comprobar()">Comprobar</button>
+
+    <div id="resultado"></div>
+
+
+
+
+
+    <script>
+
+        function comprobar() {
+
+            var texto = document.getElementById("postal").value;
+
+            if (isNaN(texto)) {
+                document.getElementById("resultado").innerHTML = "<b> Debes introducir numeros y no letras"
+            } else  if ((texto.length < 5))  {
+                document.getElementById("resultado").innerHTML = "<b> El codigo postal debe contener 5 digitos, no menos"
+            } else {
+                if (texto.startsWith("28")) {
+
+                    document.getElementById("resultado").innerHTML = "Madrid";
+
+                } else if (texto.startsWith("08")) {
+                    document.getElementById("resultado").innerHTML = "Barcelona";
+                } else {
+                    document.getElementById("resultado").innerHTML = "Otro";
+                }
+            }
+
+
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

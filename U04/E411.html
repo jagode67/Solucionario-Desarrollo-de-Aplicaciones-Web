@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.11</title>
+</head>
+
+<body>
+    <h1>4.11</h1>
+    <h2>Sacar el cuadrado de todos los números</h2>
+    <p>Introduce los primeros enteros separados por comas: </p>
+    <input type="text" placeholder="Array" id="array">
+    <p>
+       
+          <input type="button" value="Cuadrado" onclick="cuadrado()">
+    </p>
+  
+    <input type="button" value="Reiniciar" onclick="reiniciar()">
+    <p id="resultado"></p>
+    
+  <script>
+  var array=[], valor="";
+
+  function cuadrado()
+  {
+      array=document.getElementById("array").value.split(/,/);
+      var array2=array.map(calcula);
+      array2.forEach(muestra);
+  }
+
+
+function calcula(ele){
+      return parseInt(ele)**2;
+}
+
+  function muestra(ele,ind,arr){
+    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML +"Ind:"+ ind + " elemento: " + ele + "<br>";
+  }
+  function reiniciar()
+  {
+        location.reload();
+  }
+  
+  </script>
+  </body>
+
+</html>

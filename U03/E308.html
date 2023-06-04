@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <title>3.08 URL de IMG</title>
+<body>
+
+<h2>Propiedad images</h2>
+
+<img src="http://javigomez.org/ESIC/muneco.png" alt="flower" width="150" height="120">
+<img src="http://javigomez.org/ESIC/munecos.png" alt="flower" width="150" height="120">
+
+<p>Muestra la url:</p>
+<p id="demo"></p>
+
+<script>
+const myImages = document.images;
+let text = "";
+for (let i = 0; i < myImages.length; i++) {
+  text +=  myImages[i].src + "<br>";
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

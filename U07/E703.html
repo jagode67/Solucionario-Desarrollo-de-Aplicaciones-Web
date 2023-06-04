@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<title>7.03 Información XMLHttpRequest</title>
+
+<head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://javigomez.org/ESIC/DWEC/703.json", true); 
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    mostrarDatos(data);
+                } 
+            };
+            xhr.send();
+
+            function mostrarDatos(data) {
+                
+                var nombre = document.getElementById("nombre");
+                var edad = document.getElementById("edad");
+                var email = document.getElementById("email");
+
+                nombre.textContent = data.nombre;
+                edad.textContent = data.edad;
+                email.textContent = data.email;
+            }
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <h2>Información de Usuario</h2>
+    <div id="user-info">
+        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+        <p><strong>Edad:</strong> <span id="edad"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+    </div>
+</body>
+
+</html>

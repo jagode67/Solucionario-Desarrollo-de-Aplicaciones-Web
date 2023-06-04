@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.12</title>
+</head>
+
+<body>
+  <h1>4.12</h1>
+  <h2>Sumatorio con recursividad</h2>
+  <p>Introduce un número para hacer el sumatorio:</p>
+  <input type="text" placeholder="Num" id="array">
+  <p>
+    <input type="button" value="Sumatorio" onclick="sumatorio()">
+  </p>
+
+  <p id="resultado"></p>
+
+  <script>
+
+    function sumatorio() {
+      var num = parseInt(document.getElementById("array").value);
+      var tot = suma(num)
+      document.getElementById("resultado").innerHTML = tot;
+    }
+
+    function suma(num) {
+      if (num == 0)
+        return 0;
+      else
+        return num + suma(num - 1);
+    }
+
+
+  </script>
+</body>
+
+</html>

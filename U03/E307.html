@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<title>E3.07: Cambio de foco</title>
+<body>
+
+    <h2>activeElement</h2>
+
+    <input type="text" id="Input1" onfocus="myFunction()">
+    <input type="text" id="Input2" onfocus="myFunction()">
+
+    <p>Cuando cambias el foco, te dice en que campo estás</p>
+
+    <p id="demo"></p>
+
+    <script>
+        function myFunction() {
+            var element = document.activeElement.id;
+            document.getElementById("demo").innerHTML = element;
+        }
+    </script>
+
+</body>
+
+</html>

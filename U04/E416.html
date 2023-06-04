@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E416</title>
+</head>
+
+<body>
+
+    <p><label for="precio">Precio: </label> <input type="text" id="precio" name="precio" placeholder="Precio"> </p>
+    <p><label for="iva">Tipo combustible: </label> <input type="text" id="iva" name="iva" placeholder="IVA"></p>
+    <button onclick="calcularIVA(document.getElementById('precio').value,document.getElementById('iva').value);">Calculo</button>
+    <p id="resultado"></p>
+    <script>
+        function calcularIVA(precio, iva) {
+            const ivaCalculado = precio * (iva / 100);
+            document.getElementById("resultado").innerHTML = ivaCalculado;
+        }
+    </script>
+
+</body>
+
+</html>

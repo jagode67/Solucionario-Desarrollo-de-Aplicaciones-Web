@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.20 Contador de cadenas</title>
+</head>
+
+<body>
+    <label for="texto">Introduce un texto:</label>
+    <br>
+    <input type="text" id="texto">
+    <br><br>
+    <label for="cadena">Introduce una cadena:</label>
+    <br>
+    <input type="text" id="cadena">
+    <br><br>
+    <button onclick="contarCadena()">Contar cadena</button>
+    <br><br>
+    <div id="resultado"></div>
+
+    <script>
+        function contarCadena() {
+            const texto = document.getElementById("texto").value;
+            const cadena = document.getElementById("cadena").value;
+            let contador = 0;
+            let indice = texto.indexOf(cadena); // Buscamos la primera ocurrencia de la cadena en el texto
+            while (indice !== -1) { // Mientras se encuentren ocurrencias
+                contador++; // Aumentamos el contador
+                indice = texto.indexOf(cadena, indice + 1); // Buscamos la siguiente ocurrencia
+            }
+            document.getElementById("resultado").textContent = `La cadena "${cadena}" aparece ${contador} veces en el texto.`;
+        }
+    </script>
+    </script>
+
+</body>
+
+</html>

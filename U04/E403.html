@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.03</title>
+</head>
+
+<body>
+    <h1>4.03</h1>
+    <p id="parrafo">Introducir cadenas separadas por comas y la cadena a buscar. Muestra el índice donde está </p>
+
+    Cadena con comas:<input type="text" id="text1"></input><br><br>
+    Buscar: <input type="text" id="textb"></input>
+    <br><br>    <button onclick="buscar()">Buscar</button>
+    <input type="button" value="Reiniciar" onclick="Reiniciar()">
+    <p id="array"></p>
+
+    <p id="resultado"></p>
+
+    <script>
+        function Reiniciar() {
+            location.reload();
+        }
+        function buscar() {
+            /*var array = document.getElementById("text").value.split(/,/);*/
+
+            var array1 = document.getElementById("text1").value.split(",");
+            var textB = document.getElementById("textb").value;
+            
+
+            array1.forEach(quitablancos);
+
+            var ind = array1.indexOf(textB);
+
+            //RESULTADO
+
+            document.getElementById("resultado").innerHTML = "El índice es:" + ind;
+
+        }
+        function quitablancos(ele,ind,arr){
+             arr[ind]=ele.trim();
+        }
+
+    </script>
+
+
+</body>
+
+</html>

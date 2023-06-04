@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E9.04 Geoposicionamiento</title>
+</head>
+<body>
+  <h3>Geoposicionamiento</h3>
+  
+  <p id="coordinates"></p>
+
+  <script>
+    // Verificar si el navegador soporta la geolocalización
+    if ("geolocation" in navigator) {
+      // Obtener la geolocalización del usuario
+      navigator.geolocation.getCurrentPosition(function(position) {
+        // Obtener las coordenadas geográficas (latitud y longitud)
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        
+        // Mostrar las coordenadas en la página
+        document.getElementById("coordinates").innerHTML = "Coordenadas: " + latitude + ", " + longitude;
+      });
+    } else {
+      // El navegador no soporta la geolocalización
+      document.getElementById("coordinates").innerHTML = "Geolocalización no soportada.";
+    }
+  </script>
+</body>
+</html>

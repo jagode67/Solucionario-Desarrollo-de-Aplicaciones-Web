@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E6.07 Options y li</title>
+
+  <style>
+    .seleccionado {
+      background-color: lightgray;
+    }
+
+    li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Lista de elementos</h1>
+  <form id="formulario">
+    <select id="selectOptions">
+      <option value="opcion1">Opción 1</option>
+      <option value="opcion2">Opción 2</option>
+      <option value="opcion3">Opción 3</option>
+    </select>
+    <button type="button" id="btnAgregar">Agregar</button>
+  </form>
+  <ul id="lista">
+  </ul>
+  <script>
+    var formulario = document.getElementById("formulario");
+    var selectOptions = document.getElementById("selectOptions");
+    var btnAgregar = document.getElementById("btnAgregar");
+    var lista = document.getElementById("lista");
+
+    btnAgregar.addEventListener("click", function () {
+      var opcionSeleccionada = selectOptions.value;
+      opcionSeleccionada = selectOptions.children[selectOptions.selectedIndex].textContent;
+      var nuevoElemento = document.createElement("li");
+      var texto = document.createTextNode(opcionSeleccionada);
+      nuevoElemento.appendChild(texto);
+      lista.appendChild(nuevoElemento);
+
+      selectOptions.selectedIndex = 0;
+    });
+
+  </script>
+</body>
+
+</html>

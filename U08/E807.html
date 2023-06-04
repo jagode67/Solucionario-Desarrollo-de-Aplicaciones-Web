@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>8.07 Lectura</title>
+  <script>
+    var db;
+    var dbName = "mensajesDB";
+    var objectStoreName = "mensajesStore";
+
+    function iniciarIndexedDB() {
+      var request = indexedDB.open(dbName, 1);
+
+      request.onerror = function(event) {
+        console.log("Error al abrir la base de datos:", event.target.error);
+      };
+
+      request.onsuccess = function(event) {
+        db = event.target.result;
+        console.log("Base de datos abierta correctamente.");
+        mostrarMensajes();
+      };
+
+      request.onupgradeneeded = function(event) {
+        db = event.target.result;
+        console.log("Base de datos creada correctamente.");
+      };
+    }
+
+    function mostrarMensajes() {
+      var transaction = db.transaction([objectStoreName], "readonly");
+      var objectStore = transaction.objectStore(objectStoreName);
+
+      var request = objectStore.getAll();
+
+      request.onsuccess = function(event) {
+        var mensajes = event.target.result;
+
+        var listaHTML = "<ul>";
+        if (mensajes.length > 0) {
+          for (var i = 0; i < mensajes.length; i++) {
+            listaHTML += "<li>" + mensajes[i].mensaje + "</li>";
+          }
+        } else {
+          listaHTML += "<li>No se han guardado mensajes.</li>";
+        }
+        listaHTML += "</ul>";
+
+        document.getElementById("mensajes").innerHTML = listaHTML;
+      };
+
+      request.onerror = function(event) {
+        console.log("Error al obtener los mensajes:", event.target.error);
+      };
+    }
+  </script>
+</head>
+<body onload="iniciarIndexedDB()">
+  <h3>Lectura de mensajes con IndexedDB</h3>
+
+  <h3>Mensajes guardados:</h3>
+  <div id="mensajes"></div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E9.05 Geolocalización en Mapa</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h3>Geolocalización en Mapa</h3>
+  
+  <div id="map"></div>
+
+  <script>
+    function initMap() {
+      // Crear un mapa centrado en una ubicación por defecto
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 0, lng: 0},
+        zoom: 18
+      });
+      
+      // Solicitar la ubicación al usuario
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          // Obtener las coordenadas geográficas (latitud y longitud)
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          
+          // Crear un marcador en la ubicación del usuario
+          var marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+          });
+          
+          // Centrar el mapa en la ubicación del usuario
+          map.setCenter(marker.getPosition());
+        });
+      } else {
+        // El navegador no soporta la geolocalización
+        alert("Geolocalización no soportada.");
+      }
+    }
+  </script>
+  
+  <!-- Incluir la API de Google Maps -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU-CLAVE&callback=initMap"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E415</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+<script>
+    var personas = [];
+    var estudios = ["Web", "Multidispositivo"];
+    var persona;
+    function creaObj() {
+        persona = new Object();
+        persona.nombre = document.getElementById("nombre").value;
+        persona.apellidos = document.getElementById("apellidos").value;
+        persona.estudios = document.getElementById("estudios").value;
+        personas.push(persona);
+    }
+
+    function muestraObj() {
+        var lin = "<table><tr><th>Nombre</th><th>Apellidos</th><th>Estudios</th></tr>"
+        if (personas.length != 0) {
+            for (i = 0; i < personas.length; i++) {
+                lin += "<tr><td>" + personas[i].nombre + "</td>";
+                lin += "<td>" + personas[i].apellidos + "</td>";
+                lin += "<td>" + (personas[i].estudios != "" ? personas[i].estudios + "-" + estudios[personas[i].estudios] : "Sin determinar") + "</td></tr>";
+            }
+            lin += "</table>";
+            document.getElementById("linea").innerHTML = lin;
+        }
+        else
+            alert("No se ha creado la persona");
+    }
+
+    function ini() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("apellidos").value = "";
+        document.getElementById("estudios").value = "";
+        personas = [];
+        document.getElementById("linea").innerHTML = "";
+    }
+
+</script>
+
+<body>
+    <div style="display: flex;">
+        <div style="width: 50%;">
+            <p><label for="nombre">Nombre: </label> <input type="text" id="nombre" name="nombre"
+                    placeholder="Nombre de ejemplo"> </p>
+            <p><label for="apellidos">Apellidos: </label> <input type="text" id="apellidos" name="apellidos"
+                    placeholder="Apellido de ejemplo"></p>
+            <p><label for="estudios">Estudios</label>
+                <select id="estudios" name="estudios">
+                    <option value="">Estudios</option>
+                    <option value=0>Web</option>
+                    <option value=1>Multidispositivo</option>
+                </select>
+            </p>
+            <button onclick="creaObj();">Carga</button>
+            <button onclick="muestraObj();">Muestra</button>
+            <button onclick="ini();">Inicializa</button>
+
+        </div>
+        <div style="width: 50%;">
+            <p><span id="linea">
+
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

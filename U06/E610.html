@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title> Crear Tabla</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 14px;
+        }
+#cuerpo{
+    margin-bottom: 20px;
+}
+
+        .check {
+            padding: 10px;
+            width: 3%;
+        }
+
+        .codigo {
+            border: 1px solid black;
+            padding: 10px;
+            width: 30%;
+        }
+
+        .nombre {
+            border: 1px solid black;
+            padding: 10px;
+            width: 50%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 95%;
+            margin: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Creando una tabla</h1>
+    <input type="text" id="codigo">
+    <input type="text" id="nombre">
+    <button onclick="anadir()">Añadir</button>
+    <div id="cuerpo">
+        <table id="tabla">
+            <thead>
+                <tr>
+                    <th>Sel</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <button onclick="borrar()">Borrar</button>
+    <button onclick="mostrar()">Mostrar</button>
+
+    <script type="text/javascript">
+        document.getElementById("tabla").style.display = "none";
+
+        function anadir() {
+            //document.getElementById("tabla").style.display = "block";
+            document.getElementById("tabla").style.removeProperty("display");
+            var codigo = document.getElementById("codigo").value;
+            var nombre = document.getElementById("nombre").value;
+
+            var tabla = document.getElementById("tabla");
+            var tr = document.createElement("tr");
+
+            var tdC = document.createElement("td");
+            tdC.className = "codigo";
+            var txtC = document.createTextNode(codigo);
+            tdC.appendChild(txtC);
+
+            var tdN = document.createElement("td");
+            tdN.className = "nombre";
+            var txtN = document.createTextNode(nombre);
+            tdN.appendChild(txtN);
+
+            var tdCh = document.createElement("td");
+            tdCh.className = "check";
+            var check = document.createElement("input");
+            check.type = "checkbox";
+            check.name = "check";
+            tdCh.append(check);
+
+
+            tr.append(tdCh);
+            tr.append(tdC);
+            tr.append(tdN);
+            tabla.append(tr);
+        }
+
+        function borrar() {
+
+            var tabla = document.getElementById("tabla");
+
+            var checks = document.getElementsByName("check");
+            for (i = 0; i < checks.length; i++) {
+                if (checks[i].checked) {
+                    var td = checks[i].parentElement;
+                    var tr = td.parentElement;
+                    tr.parentElement.removeChild(tr);
+                }
+            }
+            if (checks.length == 0)
+                document.getElementById("tabla").style.display = "none";
+        }
+
+        function mostrar() {
+
+            var tabla = document.getElementById("tabla");
+
+            var trs = document.getElementsByTagName("tr");
+            var checks = document.getElementsByName("check");
+            for (i = 0; i < checks.length; i++) {
+                if (checks[i].checked) {
+                    var codigoSel = trs[i + 1].children[1].innerHTML;
+                    var nombreSel = trs[i + 1].children[2].innerHTML;
+                    alert("Código: " + codigoSel + " Nombre: " + nombreSel);
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

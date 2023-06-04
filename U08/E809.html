@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E8.09 Almacenamiento de Alumnos con IndexedDB</title>
+  <script>
+    var db;
+    var dbName = "alumnosDB";
+    var objectStoreName = "alumnosStore";
+
+    function iniciarIndexedDB() {
+      var request = indexedDB.open(dbName, 1);
+
+      request.onerror = function(event) {
+        console.log("Error al abrir la base de datos:", event.target.error);
+      };
+
+      request.onupgradeneeded = function(event) {
+        db = event.target.result;
+        //var objectStore = db.createObjectStore(objectStoreName, { keyPath: "id", autoIncrement: true });
+        var objectStore = db.createObjectStore(objectStoreName, { keyPath: "numeroLista" });
+        console.log("Base de datos creada correctamente.");
+      };
+
+      request.onsuccess = function(event) {
+        db = event.target.result;
+        console.log("Base de datos abierta correctamente.");
+      };
+    }
+
+    function guardarAlumno() {
+      var numeroLista = document.getElementById("numeroLista").value;
+      var nombre = document.getElementById("nombre").value;
+
+      if (!numeroLista || !nombre) {
+        console.log("Introducir un número de lista y un nombre válidos.");
+        return;
+      }
+
+      var transaction = db.transaction([objectStoreName], "readwrite");
+      var objectStore = transaction.objectStore(objectStoreName);
+      var nuevoAlumno = { numeroLista: numeroLista, nombre: nombre };
+
+      var request = objectStore.add(nuevoAlumno);
+
+      request.onsuccess = function(event) {
+        console.log("Alumno guardado correctamente.");
+        document.getElementById("numeroLista").value = "";
+        document.getElementById("nombre").value = "";
+      };
+
+      request.onerror = function(event) {
+        console.log("Error al guardar el alumno:", event.target.error);
+      };
+    }
+
+  </script>
+</head>
+<body onload="iniciarIndexedDB()">
+  <h3>Almacenamiento de Alumnos con IndexedDB</h3>
+
+  <label for="numeroLista">Número de Lista:</label>
+  <input type="text" id="numeroLista">
+  <br><br>
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre">
+  <br><br><br>
+  <button onclick="guardarAlumno()">Guardar Alumno</button>
+
+</body>
+</html>

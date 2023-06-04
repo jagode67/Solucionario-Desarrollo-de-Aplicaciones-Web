@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E3.03 Obtener navegador</title>
+</head>
+
+
+<body>
+    <h2>Navegador</h2>
+    <p id="navegador"> </p>
+
+    <h2>UserAgent</h2>
+    <p id="ua"> </p>
+
+    <button onclick="document.getElementById('navegador').innerText = navegador()">Obtener navegador</button>
+
+<script>
+        document.getElementById("ua").innerText = navigator.userAgent;
+
+
+        function navegador() {
+            var user = navigator.userAgent;
+
+            Chr = user.indexOf("Chrome");
+            Fir = user.indexOf("Firefox");
+            Edg = user.indexOf("Edg");
+
+            if (Chr > 0) {
+                sChr = user.substring(Chr);
+                b = sChr.indexOf(" ");
+                if (b > 0)
+                    ssChr = sChr.substring(0, b);
+                else
+                    ssChr = sChr;
+                ret = ssChr;
+            }
+            if (Edg > 0) {
+
+                sEdg = user.substring(Edg);
+                b = sEdg.indexOf(" ");
+                if (b > 0)
+                    ssEdg = sEdg.substring(0, b);
+                else
+                    ssEdg = sEdg;
+                ret = ssEdg;
+            }
+            if (Fir > 0) {
+                sFir = user.substring(Fir);
+                b = sFir.indexOf(" ");
+                if (b > 0)
+                    ssFir = sFir.substring(0, b);
+                else
+                    ssFir = sFir;
+                ret = ssFir;
+            }
+            return ret;
+
+        }
+    </script>

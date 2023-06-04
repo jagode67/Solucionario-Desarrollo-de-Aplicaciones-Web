@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>7.05 Carga una tabla</title>
+
+<head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var imageContainer = document.getElementById("image-container");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://javigomez.org/ESIC/DWEC/706.json", true); 
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    mostrarImagenes(data);
+                } else {
+                    mostrarError();
+                }
+            };
+            xhr.onerror = function () {
+                mostrarError();
+            };
+            xhr.send();
+
+            function mostrarImagenes(data) {
+                for (var i = 0; i < data.length; i++) {
+                    var imagen = document.createElement("img");
+                    imagen.src = data[i].url;
+                    imagen.width=100;
+                    imagen.alt = "Imagen " + (i + 1);
+
+                    var pieDeImagen = document.createElement("p");
+                    pieDeImagen.textContent = data[i].pie;
+
+                    imageContainer.appendChild(imagen);
+                    imageContainer.appendChild(pieDeImagen);
+                }
+            }
+
+            function mostrarError() {
+                imageContainer.textContent = "Error al cargar las imágenes y los pies de imagen.";
+            }
+        });
+
+    </script>
+</head>
+
+<body>
+    <h2>Imágenes</h2>
+    <div id="image-container"></div>
+</body>
+
+</html>

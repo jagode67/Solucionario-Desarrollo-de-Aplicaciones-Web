@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E7.08 Selección de un archivo de texto</title>
+    <style>
+        #concep{
+            width: 200px;
+        }
+         #dato{
+            width: 192px;
+        }
+    </style>
+
+
+
+    <script type="text/javascript" language="javascript">
+        function llama() {
+            peticion('http://javigomez.org/ESIC/DWEC/707.ax');
+        }
+        function peticion(url) {
+            http_request = false;
+            http_request = new XMLHttpRequest();
+            http_request.overrideMimeType('text/xml');
+            http_request.onreadystatechange = respuesta;
+            http_request.open('GET', url, true);
+            http_request.send();
+        }
+        function respuesta() {
+            if (http_request.readyState == 4) {
+                if (http_request.status == 200) {
+                    carga(http_request.responseText);
+                } else {
+                    alert('Hubo problemas con la petición.');
+                }
+            }
+        }
+
+        function carga(r) {
+            var sel = document.getElementById("concep");
+            l=sel.children.length;
+
+            for (i=0;i<l;i++)
+                sel.removeChild(sel.children[0]);
+            sel.style.visibility="hidden";
+            var ret = [];
+            ret = r.split(/;/);
+            for (i = 0; i < ret.length; i++) {
+                var op = document.createElement("option");
+                var top = document.createTextNode(ret[i]);
+                op.appendChild(top);
+                op.onclick=selec;
+                entrada=document.getElementById("dato").value;
+                if (ret[i].indexOf(entrada, 0) == 0 && entrada!="") {
+                    sel.style.visibility="visible";
+                    sel.append(op);
+                }
+            }
+        }
+
+        function selec(){
+            var sel = document.getElementById("concep");
+            var elementos=sel.options.length;
+            for (i=0;i<elementos;i++){
+                if (sel.options[i].selected){
+                    document.getElementById("dato").value=sel.options[i].value;
+                    sel.style.visibility="hidden";
+                }
+
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div><label for="concep">Selecciona el concepto:</label></div>
+    <div><input type="text" id="dato"></div>
+    <div><select name="concep" id="concep" multiple="multiple"></select></div>
+    
+    <script>
+        document.getElementById("dato").addEventListener("input", llama);
+        document.getElementById("concep").style.visibility="hidden";
+    </script>
+</body>
+
+</html>
